@@ -14,8 +14,8 @@ public class Cliente {
 	private List<Conta> contas = new ArrayList<>();
 	
 	public Cliente(String cpf, String nome) {
-		Assert.hasText(nome, "Nome inválido");
-		Assert.hasText(cpf, "CPF inválido");
+		Assert.hasText(nome, "Nome é obrigatório");
+		Assert.hasText(cpf, "CPF é obrigatório");
 		Assert.isTrue(cpf.length() == 11, "CPF inválido");
 		this.nome = nome;
 		this.cpf = cpf;
