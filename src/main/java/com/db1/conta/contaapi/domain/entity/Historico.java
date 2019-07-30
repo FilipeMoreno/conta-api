@@ -13,10 +13,9 @@ public class Historico {
 	private Conta conta;
 	private Double valorResultante;
 	
-	public Historico(HistoricoTipo tipo, LocalDateTime data, Double valor, Conta conta, Double valorResultante) {
+	public Historico(HistoricoTipo tipo, Double valor, Conta conta, Double valorResultante) {
 		Assert.notNull(tipo, "Tipo do histórico é obrigatório");
 		Assert.notNull(valor, "Valor é obrigatório");
-		Assert.notNull(data, "Data é obrigatória");
 		Assert.notNull(conta, "Conta é obrigatória");
 		Assert.notNull(valorResultante, "Valor resultante é obrigatório");
 		
