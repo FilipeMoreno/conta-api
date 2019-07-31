@@ -16,7 +16,7 @@ public class ContaTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Agência é obrigatória", mensagem);
+		Assert.assertEquals(Conta.AGENCIA_OBRIGATORIA, mensagem);
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class ContaTest {
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Tipo de conta é obrigatório", mensagem);
+		Assert.assertEquals(Conta.TIPO_CONTA_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class ContaTest {
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Número da conta é obrigatório", mensagem);
+		Assert.assertEquals(Conta.NUMERO_CONTA_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class ContaTest {
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Cliente é obrigatório", mensagem);
+		Assert.assertEquals(Conta.CLIENTE_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -67,7 +67,7 @@ public class ContaTest {
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Saldo é obrigatório", mensagem);
+		Assert.assertEquals(Conta.SALDO_OBRIGATORIO, mensagem);
 	}
 	
 	@Test

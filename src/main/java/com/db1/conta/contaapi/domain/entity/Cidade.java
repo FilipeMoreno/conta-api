@@ -4,6 +4,10 @@ import org.springframework.util.Assert;
 
 public class Cidade {
 
+	public static final String ESTADO_É_OBRIGATÓRIO = "Estado é obrigatório";
+
+	public static final String NOME_É_OBRIGATÓRIO = "Nome é obrigatório";
+
 	private Long id;
 	
 	private String nome;
@@ -11,8 +15,8 @@ public class Cidade {
 	private Estado estado;
 	
 	public Cidade(String nome, Estado estado) {
-		Assert.hasText(nome, "Nome é obrigatório");
-		Assert.notNull(estado, "Estado é obrigatório");
+		Assert.hasText(nome, NOME_É_OBRIGATÓRIO);
+		Assert.notNull(estado, ESTADO_É_OBRIGATÓRIO);
 		this.nome = nome;
 		this.estado = estado;
 	}

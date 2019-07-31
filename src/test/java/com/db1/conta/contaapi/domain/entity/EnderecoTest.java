@@ -16,7 +16,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("Logradouro é obrigatório", mensagem);
+		Assert.assertEquals(Endereco.LOGRADOURO_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("Número é obrigatório", mensagem);
+		Assert.assertEquals(Endereco.NUMERO_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("Cidade é obrigatória", mensagem);
+		Assert.assertEquals(Endereco.CIDADE_OBRIGATORIA, mensagem);
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("Cliente é obrigatório", mensagem);
+		Assert.assertEquals(Endereco.CLIENTE_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -67,7 +67,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("Tipo de endereço é obrigatório", mensagem);
+		Assert.assertEquals(Endereco.TIPO_ENDERECO_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("CEP é obrigatório", mensagem);
+		Assert.assertEquals(Endereco.CEP_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ public class EnderecoTest {
 	} catch (Exception e) {
 		mensagem = e.getMessage();
 	}
-		Assert.assertEquals("CEP inválido", mensagem);
+		Assert.assertEquals(Endereco.CEP_INVALIDO, mensagem);
 	}
 	
 	@Test

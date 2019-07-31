@@ -7,6 +7,11 @@ import org.springframework.util.Assert;
 
 public class Conta {
 	
+	public static final String SALDO_OBRIGATORIO = "Saldo é obrigatório";
+	public static final String CLIENTE_OBRIGATORIO = "Cliente é obrigatório";
+	public static final String NUMERO_CONTA_OBRIGATORIO = "Número da conta é obrigatório";
+	public static final String TIPO_CONTA_OBRIGATORIO = "Tipo de conta é obrigatório";
+	public static final String AGENCIA_OBRIGATORIA = "Agência é obrigatória";
 	private Long id;
 	private Agencia agencia;
 	private ContaTipo tipo;
@@ -17,11 +22,11 @@ public class Conta {
 	
 	public Conta (Agencia agencia, ContaTipo tipo, String numero, Cliente cliente, Double saldo) {
 		
-		Assert.notNull(agencia, "Agência é obrigatória");
-		Assert.notNull(tipo, "Tipo de conta é obrigatório");
-		Assert.notNull(numero, "Número da conta é obrigatório");
-		Assert.notNull(cliente, "Cliente é obrigatório");
-		Assert.notNull(saldo, "Saldo é obrigatório");
+		Assert.notNull(agencia, AGENCIA_OBRIGATORIA);
+		Assert.notNull(tipo, TIPO_CONTA_OBRIGATORIO);
+		Assert.notNull(numero, NUMERO_CONTA_OBRIGATORIO);
+		Assert.notNull(cliente, CLIENTE_OBRIGATORIO);
+		Assert.notNull(saldo, SALDO_OBRIGATORIO);
 		
 		this.agencia = agencia;
 		this.tipo = tipo;

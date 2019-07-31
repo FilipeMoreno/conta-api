@@ -15,7 +15,7 @@ public class HistoricoTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Tipo do histórico é obrigatório", mensagem);
+		Assert.assertEquals(Historico.TIPO_HISTORICO_OBRIGATORIO, mensagem);
 		
 	}
 	
@@ -27,7 +27,7 @@ public class HistoricoTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Conta é obrigatória", mensagem);
+		Assert.assertEquals(Historico.CONTA_OBRIGATORIA, mensagem);
 		
 	}
 	
@@ -40,7 +40,7 @@ public class HistoricoTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Valor é obrigatório", mensagem);
+		Assert.assertEquals(Historico.VALOR_OBRIGATORIO, mensagem);
 		
 	}
 	
@@ -53,7 +53,7 @@ public class HistoricoTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Valor resultante é obrigatório", mensagem);
+		Assert.assertEquals(Historico.VALOR_RESULTANTE_OBRIGATORIO, mensagem);
 		
 	}
 

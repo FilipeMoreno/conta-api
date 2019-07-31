@@ -13,7 +13,7 @@ public class ClienteTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("Nome é obrigatório", mensagem);
+		Assert.assertEquals(Cliente.NOME_É_OBRIGATÓRIO, mensagem);
 	}
 	
 	@Test
@@ -24,7 +24,7 @@ public class ClienteTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("CPF é obrigatório", mensagem);
+		Assert.assertEquals(Cliente.CPF_É_OBRIGATÓRIO, mensagem);
 	}
 	
 	@Test
@@ -35,7 +35,7 @@ public class ClienteTest {
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals("CPF inválido", mensagem);
+		Assert.assertEquals(Cliente.CPF_INVÁLIDO, mensagem);
 	}
 	
 	@Test
