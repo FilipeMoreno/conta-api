@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import org.springframework.util.Assert;
 
@@ -15,6 +17,7 @@ public class Historico {
 	public static final String VALOR_OBRIGATORIO = "Valor é obrigatório";
 	public static final String TIPO_HISTORICO_OBRIGATORIO = "Tipo do histórico é obrigatório";
 
+	@Enumerated(EnumType.STRING)
 	@Column(name="tipo")
 	private HistoricoTipo tipo;
 	
@@ -37,6 +40,7 @@ public class Historico {
 		this.tipo = tipo;
 		this.valor = valor;
 		this.saldoAtual = saldoAtual;
+		this.data = LocalDateTime.now();
 		
 	}
 	
