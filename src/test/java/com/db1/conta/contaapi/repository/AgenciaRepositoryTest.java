@@ -71,15 +71,12 @@ public class AgenciaRepositoryTest {
 //		
 //		Cidade cidade = new Cidade("Maringá", Estado.PR);
 //		Cidade cidadeSalva = cidadeRepository.save(cidade);
-<<<<<<< HEAD
 //		Assert.assertNotNull(cidade);
-=======
->>>>>>> 6a2b0b7b7a5410738a9c15b4700683d66624818e
 //		
 //		Agencia agencia = new Agencia("1234", "0", cidade);
 //		Agencia agenciaSalva = agenciaRepository.save(agencia);
 //		
-//		List<Agencia> agencias = agenciaRepository.findByBusca(Estado.PR);
+//		List<Agencia> agencias = agenciaRepository.findByCidadeEstado(Estado.PR);
 //		
 //		Assert.assertEquals(1,agencias.size());
 //		

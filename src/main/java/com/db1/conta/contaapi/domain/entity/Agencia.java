@@ -31,7 +31,7 @@ public class Agencia {
 	private String digito;
 	
 	@JoinColumn(name = "cidade_id", nullable = false)
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false)
 	private Cidade Cidade;
 	
 	protected Agencia () {}
