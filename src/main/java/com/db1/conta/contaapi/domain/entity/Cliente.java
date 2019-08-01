@@ -34,17 +34,14 @@ public class Cliente {
 	@Column(name = "cpf", length = 11, nullable = false, unique = true)
 	private String cpf;
 	
-	@Column(name = "nome", length = 120, nullable = false, unique = true)
+	@Column(name = "nome", length = 120, nullable = false)
 	private String nome;
 	
-	  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	  @JoinTable(name="cliente_enderecos",
-	             joinColumns={@JoinColumn(name = "cliente_id")},
-	             inverseJoinColumns={@JoinColumn(name = "endereco_id")})
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Conta> contas = new ArrayList<>();
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	private List<Conta> contas = new ArrayList<>();
 	
 	protected Cliente() {}
 	
@@ -56,9 +53,26 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 	
-	public List<Conta> getContas() {
-		return contas;
+	public void addEndereco(String logradouro, String numero, Cidade cidade, String complemento, TipoEndereco tipoEndereco, String cep) {
+		Endereco endereco = new Endereco(this, logradouro, numero, cidade, complemento, tipoEndereco, cep);
+		this.enderecos.add(endereco);
 	}
+	
+	private void addEnderecoCobranca(String logradouro, String numero, Cidade cidade, String complemento, String cep) {
+		this.addEndereco(logradouro, numero, cidade, complemento, TipoEndereco.Cobrança, cep);
+	}
+	
+	private void addEnderecoResidencial(String logradouro, String numero, Cidade cidade, String complemento, String cep) {
+		this.addEndereco(logradouro, numero, cidade, complemento, TipoEndereco.Residencial, cep);
+	}
+	
+	private void addEnderecoComercial(String logradouro, String numero, Cidade cidade, String complemento, String cep) {
+		this.addEndereco(logradouro, numero, cidade, complemento, TipoEndereco.Comercial, cep);
+	}
+	
+//	public List<Conta> getContas() {
+//		return contas;
+//	}
 	
 	public String getCpf() {
 		return cpf;
