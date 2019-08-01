@@ -27,6 +27,8 @@ public class Historico {
 	@Column(name="saldo_atual")
 	private Double saldoAtual;
 	
+	protected Historico() {}
+	
 	public Historico(HistoricoTipo tipo, Double valor, Double saldoAtual) {
 		Assert.notNull(tipo, TIPO_HISTORICO_OBRIGATORIO);
 		Assert.notNull(valor, VALOR_OBRIGATORIO);
