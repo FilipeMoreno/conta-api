@@ -1,6 +1,5 @@
 package com.db1.conta.contaapi.domain.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.util.Assert;
@@ -43,14 +41,14 @@ public class Endereco {
 	private String numero;
 	
 	@JoinColumn(name = "cidade_id", nullable = false)
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false)
 	private Cidade cidade; 
 	
-	@Column(name = "complemento", length = 60)
+	@Column(name = "complemento", length = 100)
 	private String complemento;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_endereco", length = 15, nullable = false)
+	@Column(name = "tipo", length = 20, nullable = false)
 	private TipoEndereco tipoEndereco;
 	
 	@Column(name = "cep", length = 8, nullable = false)
