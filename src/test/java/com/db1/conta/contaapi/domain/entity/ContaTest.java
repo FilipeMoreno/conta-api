@@ -12,7 +12,7 @@ public class ContaTest {
 		String mensagem = null;
 		Cliente cliente = Mockito.mock(Cliente.class);
 		try {
-			Conta conta = new Conta(null, ContaTipo.Corrente, "123", cliente, 100.0);
+			Conta conta = new Conta(null, ContaTipo.Corrente, "123", cliente);
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -25,7 +25,7 @@ public class ContaTest {
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Agencia agencia = Mockito.mock(Agencia.class);
 		try {
-			Conta conta = new Conta(agencia, null, "123", cliente, 100.0);
+			Conta conta = new Conta(agencia, null, "123", cliente);
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
@@ -38,7 +38,7 @@ public class ContaTest {
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Agencia agencia = Mockito.mock(Agencia.class);
 		try {
-			Conta conta = new Conta(agencia, ContaTipo.Poupança, null, cliente, 100.0);
+			Conta conta = new Conta(agencia, ContaTipo.Poupança, null, cliente);
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
@@ -50,24 +50,11 @@ public class ContaTest {
 		String mensagem = null;
 		Agencia agencia = Mockito.mock(Agencia.class);
 		try {
-			Conta conta = new Conta(agencia, ContaTipo.Corrente, "123", null, 100.0);
+			Conta conta = new Conta(agencia, ContaTipo.Corrente, "123", null);
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}
 		Assert.assertEquals(Conta.CLIENTE_OBRIGATORIO, mensagem);
-	}
-	
-	@Test
-	public void deveRetornarSaldoObrigatorio() {
-		String mensagem = null;
-		Cliente cliente = Mockito.mock(Cliente.class);
-		Agencia agencia = Mockito.mock(Agencia.class);
-		try {
-			Conta conta = new Conta(agencia, ContaTipo.Corrente, "123", cliente, null);
-		} catch (Exception e){
-			mensagem = e.getMessage();
-		}
-		Assert.assertEquals(Conta.SALDO_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -77,7 +64,7 @@ public class ContaTest {
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Agencia agencia = Mockito.mock(Agencia.class);
 		try {
-			conta = new Conta(agencia, ContaTipo.Corrente, "1234", cliente, 0.0);
+			conta = new Conta(agencia, ContaTipo.Corrente, "1234", cliente);
 		} catch (Exception e){
 			mensagem = e.getMessage();
 		}

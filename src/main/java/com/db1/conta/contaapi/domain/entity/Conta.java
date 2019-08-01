@@ -18,11 +18,14 @@ import javax.persistence.Table;
 
 import org.springframework.util.Assert;
 
+import com.db1.conta.contaapi.infra.Verificadora;
+
 @Entity
 @Table(name = "conta")
 public class Conta {
 	
-	public static final String SALDO_OBRIGATORIO = "Saldo é obrigatório";
+	private static final String DEPOSITO_VALOR_DEVE_SER_MAIOR_QUE_ZERO = "Valor a ser depositado deve ser maior que zero";
+	private static final String SAQUE_VALOR_DEVE_SER_MAIOR_QUE_ZERO = "Valor a ser sacado deve ser maior que zero";
 	public static final String CLIENTE_OBRIGATORIO = "Cliente é obrigatório";
 	public static final String NUMERO_CONTA_OBRIGATORIO = "Número da conta é obrigatório";
 	public static final String TIPO_CONTA_OBRIGATORIO = "Tipo de conta é obrigatório";
@@ -32,8 +35,8 @@ public class Conta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@ManyToOne
 	@JoinColumn(name = "agencia_id", nullable = false)
-	@ManyToOne(optional = false)
 	private Agencia agencia;
 	
 	@Enumerated(EnumType.STRING)
@@ -43,11 +46,11 @@ public class Conta {
 	@Column(name = "numero", length = 20, nullable = false, unique = true)
 	private String numero;
 	
+	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)
-	@ManyToOne(optional = false)
 	private Cliente cliente;
 	
-	@Column(name = "saldo", length = 20, nullable = false)
+	@Column(name = "saldo", precision = 14, nullable = false, scale = 2)
 	private Double saldo;
 	
 	@ElementCollection
@@ -62,13 +65,25 @@ public class Conta {
 		Assert.notNull(tipo, TIPO_CONTA_OBRIGATORIO);
 		Assert.notNull(numero, NUMERO_CONTA_OBRIGATORIO);
 		Assert.notNull(cliente, CLIENTE_OBRIGATORIO);
-		Assert.notNull(saldo, SALDO_OBRIGATORIO);
 		
 		this.agencia = agencia;
 		this.tipo = tipo;
 		this.numero = numero;
 		this.cliente = cliente;
-		this.saldo = saldo;
+		this.saldo = 0.0;
+	}
+	
+	public void depositar(double valor) {	
+		
+		Verificadora.valorMaiorQueZero(valor, DEPOSITO_VALOR_DEVE_SER_MAIOR_QUE_ZERO);
+		this.saldo += valor;
+		this.historicos.add(new Historico(HistoricoTipo.Entrada, valor, this.saldo));
+	}
+	
+	public void sacar(double valor) {	
+		Verificadora.valorMaiorOuIgualQueZero(valor, SAQUE_VALOR_DEVE_SER_MAIOR_QUE_ZERO);
+		this.saldo += valor;
+		this.historicos.add(new Historico(HistoricoTipo.Saída, valor, this.saldo));
 	}
 	
 	public Agencia getAgencia() {
