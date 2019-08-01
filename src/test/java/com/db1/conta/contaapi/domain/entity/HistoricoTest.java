@@ -37,7 +37,7 @@ public class HistoricoTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals(Historico.VALOR_RESULTANTE_OBRIGATORIO, mensagem);
+		Assert.assertEquals(Historico.SALDO_ATUAL_OBRIGATORIO, mensagem);
 	}
 
 }

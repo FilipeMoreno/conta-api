@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 @Embeddable
 public class Historico {
 	
-	public static final String VALOR_RESULTANTE_OBRIGATORIO = "Valor resultante é obrigatório";
+	public static final String SALDO_ATUAL_OBRIGATORIO = "Saldo atual é obrigatório";
 	public static final String CONTA_OBRIGATORIA = "Conta é obrigatória";
 	public static final String VALOR_OBRIGATORIO = "Valor é obrigatório";
 	public static final String TIPO_HISTORICO_OBRIGATORIO = "Tipo do histórico é obrigatório";
@@ -24,17 +24,17 @@ public class Historico {
 	@Column(name="valor")
 	private Double valor;
 
-	@Column(name="valor_resultante")
-	private Double valorResultante;
+	@Column(name="saldo_atual")
+	private Double saldoAtual;
 	
-	public Historico(HistoricoTipo tipo, Double valor, Double valorResultante) {
+	public Historico(HistoricoTipo tipo, Double valor, Double saldoAtual) {
 		Assert.notNull(tipo, TIPO_HISTORICO_OBRIGATORIO);
 		Assert.notNull(valor, VALOR_OBRIGATORIO);
-		Assert.notNull(valorResultante, VALOR_RESULTANTE_OBRIGATORIO);
+		Assert.notNull(saldoAtual, SALDO_ATUAL_OBRIGATORIO);
 		
 		this.tipo = tipo;
 		this.valor = valor;
-		this.valorResultante = valorResultante;
+		this.saldoAtual = saldoAtual;
 		
 	}
 	
@@ -51,7 +51,7 @@ public class Historico {
 	}
 	
 	public Double getValorResultante() {
-		return valorResultante;
+		return saldoAtual;
 	}
 	
 
