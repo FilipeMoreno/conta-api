@@ -8,9 +8,8 @@ import com.db1.conta.contaapi.domain.entity.Agencia;
 import com.db1.conta.contaapi.domain.entity.Estado;
 
 public interface AgenciaRepository extends JpaRepository<Agencia, Long> {
+
+	Agencia findByNumero(String numero);
 	
-//	List<Agencia> findByCidadeEstado(Estado estado);
-	Agencia findByNumero(String numero); 
-
+//	List<Agencia> findByBusca(Estado estado);
 }
-
