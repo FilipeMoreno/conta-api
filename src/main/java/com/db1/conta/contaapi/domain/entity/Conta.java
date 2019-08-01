@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,22 +38,22 @@ public class Conta {
 	@ManyToOne(optional = false)
 	private Agencia agencia;
 	
-	@JoinColumn(name = "tipo", nullable = false)
-	@ManyToOne(optional = false)
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo", length = 2, nullable = false)
 	private ContaTipo tipo;
 	
 	@Column(name = "numero", length = 20, nullable = false, unique = true)
 	private String numero;
 	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "cliente_id", nullable = false)
+	@ManyToOne(optional = false)
 	private Cliente cliente;
 	
 	@Column(name = "saldo", length = 20, nullable = false)
 	private Double saldo;
 	
-//	@ElementCollection
-//    @CollectionTable(name="historico", joinColumns=@JoinColumn(name="USER_ID"))
-//    @AttributeOverride(name="streetAddress", column=@Column(name="STREET_ADD)
+	@ElementCollection
+    @CollectionTable(name="historico", joinColumns=@JoinColumn(name="cliente_id"))
 	private List<Historico> historicos = new ArrayList<Historico>();
 	
 	protected Conta() {}
