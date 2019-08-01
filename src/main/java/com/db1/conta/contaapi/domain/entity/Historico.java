@@ -18,16 +18,16 @@ public class Historico {
 	public static final String TIPO_HISTORICO_OBRIGATORIO = "Tipo do histórico é obrigatório";
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="tipo")
+	@Column(name = "tipo", nullable = false, length = 30)
 	private HistoricoTipo tipo;
 	
-	@Column(name="data")
+	@Column(name = "data", nullable = false, length = 30)
 	private LocalDateTime data;
 	
-	@Column(name="valor")
+	@Column(name = "valor", nullable = false, precision = 14, scale = 2)
 	private Double valor;
 
-	@Column(name="saldo_atual")
+	@Column(name = "saldo_atual", nullable = false, precision = 14, scale = 2)
 	private Double saldoAtual;
 	
 	protected Historico() {}
