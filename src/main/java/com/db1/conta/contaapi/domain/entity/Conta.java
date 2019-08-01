@@ -3,7 +3,6 @@ package com.db1.conta.contaapi.domain.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -15,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.util.Assert;
@@ -53,12 +51,12 @@ public class Conta {
 	private Double saldo;
 	
 	@ElementCollection
-    @CollectionTable(name="historico", joinColumns=@JoinColumn(name="cliente_id"))
+    @CollectionTable(name="historico", joinColumns=@JoinColumn(name="conta_id"))
 	private List<Historico> historicos = new ArrayList<Historico>();
 	
 	protected Conta() {}
 	
-	public Conta (Agencia agencia, ContaTipo tipo, String numero, Cliente cliente, Double saldo) {
+	public Conta (Agencia agencia, ContaTipo tipo, String numero, Cliente cliente) {
 		
 		Assert.notNull(agencia, AGENCIA_OBRIGATORIA);
 		Assert.notNull(tipo, TIPO_CONTA_OBRIGATORIO);
