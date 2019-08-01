@@ -3,8 +3,24 @@ package com.db1.conta.contaapi.domain.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.springframework.util.Assert;
 
+@Entity
+@Table(name = "conta")
 public class Conta {
 	
 	public static final String SALDO_OBRIGATORIO = "Saldo é obrigatório";
@@ -12,13 +28,34 @@ public class Conta {
 	public static final String NUMERO_CONTA_OBRIGATORIO = "Número da conta é obrigatório";
 	public static final String TIPO_CONTA_OBRIGATORIO = "Tipo de conta é obrigatório";
 	public static final String AGENCIA_OBRIGATORIA = "Agência é obrigatória";
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@JoinColumn(name = "agencia_id", nullable = false)
+	@ManyToOne(optional = false)
 	private Agencia agencia;
+	
+	@JoinColumn(name = "tipo", nullable = false)
+	@ManyToOne(optional = false)
 	private ContaTipo tipo;
+	
+	@Column(name = "numero", length = 20, nullable = false, unique = true)
 	private String numero;
+	
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Cliente cliente;
+	
+	@Column(name = "saldo", length = 20, nullable = false)
 	private Double saldo;
+	
+//	@ElementCollection
+//    @CollectionTable(name="historico", joinColumns=@JoinColumn(name="USER_ID"))
+//    @AttributeOverride(name="streetAddress", column=@Column(name="STREET_ADD)
 	private List<Historico> historicos = new ArrayList<Historico>();
+	
+	protected Conta() {}
 	
 	public Conta (Agencia agencia, ContaTipo tipo, String numero, Cliente cliente, Double saldo) {
 		
