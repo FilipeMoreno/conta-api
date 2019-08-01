@@ -69,10 +69,11 @@ public class AgenciaRepositoryTest {
 //	@Test
 //	public void deveBuscarTodasAgenciasDeUmEstado() {
 //		
-//		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
+//		Cidade cidade = new Cidade("Maringá", Estado.PR);
+//		Cidade cidadeSalva = cidadeRepository.save(cidade);
+//		Assert.assertNotNull(cidade);
 //		
-//		Agencia agencia = new Agencia("0506", "1", cidade);
-//		
+//		Agencia agencia = new Agencia("1234", "0", cidade);
 //		Agencia agenciaSalva = agenciaRepository.save(agencia);
 //		
 //		List<Agencia> agencias = agenciaRepository.findByCidadeEstado(Estado.PR);
