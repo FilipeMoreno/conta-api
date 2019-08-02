@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,21 +27,21 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "cpf", length = 11, nullable = false, unique = true)
-	private String cpf;
-	
 	@Column(name = "nome", length = 120, nullable = false)
 	private String nome;
+	
+	@Column(name = "cpf", length = 11, nullable = false, unique = true)
+	private String cpf;
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	private List<Conta> contas = new ArrayList<>();
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Conta> contas = new ArrayList<>();
 	
 	protected Cliente() {}
 	
-	public Cliente(String cpf, String nome) {
+	public Cliente(String nome, String cpf) {
 		Assert.hasText(nome, NOME_É_OBRIGATÓRIO);
 		Assert.hasText(cpf, CPF_É_OBRIGATÓRIO);
 		Assert.isTrue(cpf.length() == 11, CPF_INVÁLIDO);
@@ -65,9 +66,9 @@ public class Cliente {
 		this.addEndereco(logradouro, numero, cidade, complemento, TipoEndereco.Comercial, cep);
 	}
 	
-//	public List<Conta> getContas() {
-//		return contas;
-//	}
+	public List<Conta> getContas() {
+		return contas;
+	}
 	
 	public String getCpf() {
 		return cpf;

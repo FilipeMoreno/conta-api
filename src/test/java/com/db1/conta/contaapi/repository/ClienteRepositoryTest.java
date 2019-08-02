@@ -32,7 +32,7 @@ public class ClienteRepositoryTest {
 	@Test
 	public void deveCriarUmCliente() {
 		
-		Cliente cliente = new Cliente("12345678912", "Cliente Teste");
+		Cliente cliente = new Cliente("Cliente Teste", "12345678912");
 		Cliente clienteSalvo = clienteRepository.save(cliente);
 		
 		Assert.assertNotNull(clienteSalvo.getId());
@@ -45,7 +45,7 @@ public class ClienteRepositoryTest {
 		
 		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
 		
-		Cliente cliente = new Cliente("12345678912", "Cliente Teste");
+		Cliente cliente = new Cliente("Cliente Teste", "12345678912");
 		cliente.addEndereco("Rua teste", "123", cidade, null, TipoEndereco.Residencial, "00000000");
 		Cliente clienteSalvo = clienteRepository.save(cliente);
 		
@@ -59,7 +59,7 @@ public class ClienteRepositoryTest {
 	@Test
 	public void deveBuscarUmClientePeloNome() {
 		
-		Cliente cliente = new Cliente("12345678912", "Cliente Teste");
+		Cliente cliente = new Cliente("Cliente Teste", "12345678912");
 		Cliente clienteSalvo = clienteRepository.save(cliente);
 		
 		Cliente clientePeloNome = clienteRepository.findByNome("Cliente Teste");
@@ -73,7 +73,7 @@ public class ClienteRepositoryTest {
 	@Test
 	public void deveBuscarUmClientePeloCPF() {
 		
-		Cliente cliente = new Cliente("12345678912", "Cliente Teste");
+		Cliente cliente = new Cliente("Cliente Teste", "12345678912");
 		Cliente clienteSalvo = clienteRepository.save(cliente);
 		
 		Cliente clientePeloCPF = clienteRepository.findByCpf("12345678912");
