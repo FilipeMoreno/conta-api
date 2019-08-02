@@ -16,7 +16,7 @@ public class AgenciaTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals(Agencia.NÚMERO_É_OBRIGATÓRIO, mensagem);
+		Assert.assertEquals(Agencia.NUMERO_OBRIGATORIO, mensagem);
 		
 	}
 	
@@ -29,7 +29,7 @@ public class AgenciaTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals(Agencia.DÍGITO_É_OBRIGATÓRIO, mensagem);
+		Assert.assertEquals(Agencia.DIGITO_OBRIGATORIO, mensagem);
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class AgenciaTest {
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
-		Assert.assertEquals(Agencia.CIDADE_É_OBRIGATÓRIO, mensagem);
+		Assert.assertEquals(Agencia.CIDADE_OBRIGATORIA, mensagem);
 	}
 	
 	@Test

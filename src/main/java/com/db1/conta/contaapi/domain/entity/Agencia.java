@@ -15,9 +15,9 @@ import org.springframework.util.Assert;
 @Table(name = "agencia")
 public class Agencia {
 	
-	public static final String DÍGITO_É_OBRIGATÓRIO = "Dígito é obrigatório";
-	public static final String CIDADE_É_OBRIGATÓRIO = "Cidade é obrigatória";
-	public static final String NÚMERO_É_OBRIGATÓRIO = "Número é obrigatório";
+	public static final String DIGITO_OBRIGATORIO = "Dígito é obrigatório";
+	public static final String CIDADE_OBRIGATORIA = "Cidade é obrigatória";
+	public static final String NUMERO_OBRIGATORIO = "Número é obrigatório";
 	public static final String NUMERO_INVALIDO = "Número da agência é inválido";
 	public static final String DIGITO_INVALIDO = "Dígito da agência é inválido";
 	
@@ -38,9 +38,9 @@ public class Agencia {
 	protected Agencia () {}
 	
 	public Agencia(String numero, String digito, Cidade cidade) {
-		Assert.hasText(numero, NÚMERO_É_OBRIGATÓRIO);
-		Assert.notNull(cidade, CIDADE_É_OBRIGATÓRIO);
-		Assert.hasText(digito, DÍGITO_É_OBRIGATÓRIO);
+		Assert.hasText(numero, NUMERO_OBRIGATORIO);
+		Assert.notNull(cidade, CIDADE_OBRIGATORIA);
+		Assert.hasText(digito, DIGITO_OBRIGATORIO);
 		Assert.isTrue(numero.length() == 4, NUMERO_INVALIDO);
 		Assert.isTrue(digito.length() == 1, DIGITO_INVALIDO);
 		this.numero = numero;
