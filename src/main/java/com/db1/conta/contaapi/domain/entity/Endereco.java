@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,19 +29,19 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JoinColumn(name = "cliente_id", nullable = false)
 	@ManyToOne
+	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name = "cidade_id", nullable = false)
+	private Cidade cidade; 
 	
 	@Column(name = "logradouro", length = 60, nullable = false)
 	private String logradouro;
 	
 	@Column(name = "numero", length = 6, nullable = false)
 	private String numero;
-	
-	@JoinColumn(name = "cidade_id", nullable = false)
-	@ManyToOne(optional = false)
-	private Cidade cidade; 
 	
 	@Column(name = "complemento", length = 100)
 	private String complemento;

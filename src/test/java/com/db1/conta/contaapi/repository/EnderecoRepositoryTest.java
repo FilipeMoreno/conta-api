@@ -40,7 +40,7 @@ public class EnderecoRepositoryTest {
 	@Test
 	public void deveSalvarUmEndereco() {
 		
-		Cliente cliente = new Cliente("12345678912", "Filipe Moreno");
+		Cliente cliente = new Cliente("Cliente Teste", "12345678912");
 		Cliente clienteSalvo = clienteRepository.save(cliente);
 		Assert.assertNotNull(clienteSalvo);
 		

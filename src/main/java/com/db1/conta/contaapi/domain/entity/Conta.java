@@ -31,20 +31,16 @@ public class Conta {
 	public static final String TIPO_CONTA_OBRIGATORIO = "Tipo de conta é obrigatório";
 	public static final String AGENCIA_OBRIGATORIA = "Agência é obrigatória";
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "numero", length = 20, nullable = false, unique = true)
+	private String numero;
 	
 	@ManyToOne
 	@JoinColumn(name = "agencia_id", nullable = false)
 	private Agencia agencia;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo", length = 2, nullable = false)
-	private ContaTipo tipo;
-	
-	@Column(name = "numero", length = 20, nullable = false, unique = true)
-	private String numero;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)
@@ -52,6 +48,10 @@ public class Conta {
 	
 	@Column(name = "saldo", precision = 14, nullable = false, scale = 2)
 	private Double saldo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo", length = 30, nullable = false)
+	private ContaTipo tipo;
 	
 	@ElementCollection
     @CollectionTable(name="historico", joinColumns=@JoinColumn(name="conta_id"))

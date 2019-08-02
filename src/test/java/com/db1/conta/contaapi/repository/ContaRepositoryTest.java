@@ -20,7 +20,7 @@ import com.db1.conta.contaapi.domain.entity.Estado;
 public class ContaRepositoryTest {
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ContaRepository contaRepository;
 	
 	@Autowired
 	private AgenciaRepository agenciaRepository;
@@ -29,56 +29,50 @@ public class ContaRepositoryTest {
 	private CidadeRepository cidadeRepository;
 	
 	@Autowired
-	private ContaRepository contaRepository;
+	private ClienteRepository clienteRepository;
 	
 	@After
 	public void afterTest() {
-		clienteRepository.deleteAll();
+		contaRepository.deleteAll();
 		agenciaRepository.deleteAll();
 		cidadeRepository.deleteAll();
-		contaRepository.deleteAll();
+		clienteRepository.deleteAll();
 	}
-	
-//	@Test
-//	public void deveSalvarUmaConta() {
-//		
-//		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
-//		Agencia agencia = agenciaRepository.save(new Agencia("123456", "1", cidade));
-//		Cliente cliente = clienteRepository.save(new Cliente("Cliente Nome", "99999999999"));
-//		
-//		Conta conta = new Conta(agencia, ContaTipo.Corrente, "12012", cliente);
-//		
-//		Conta contaSalva = contaRepository.save(conta);
-//		
-//		Assert.assertEquals(conta.getNumero(), contaSalva.getNumero());
-//		Assert.assertNotNull(contaSalva.getId());
-//	}
 	
 	@Test
 	public void deveCriarUmaConta() {
 		
 		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
-		
-		Assert.assertNotNull(cidade.getId());
-		
+
 		Agencia agencia = agenciaRepository.save(new Agencia("1234", "0", cidade));
 		
-		Assert.assertNotNull(agencia.getId());
-		
-		Cliente cliente = clienteRepository.save(new Cliente("00000000000", "Cliente Teste"));
-		
-		Assert.assertNotNull(cliente.getId());
+		Cliente cliente = clienteRepository.save(new Cliente("Cliente Teste", "00000000000"));
 		
 		Conta conta = new Conta(agencia, ContaTipo.Corrente, "123456", cliente);
 		Conta contaSalva = contaRepository.save(conta);
-//		
-//		Assert.assertNotNull(contaSalva.getId());
-//		Assert.assertEquals(conta.getNumero(), contaSalva.getNumero());
-//		Assert.assertEquals(conta.getAgencia(), contaSalva.getAgencia());
-//		Assert.assertEquals(conta.getCliente(), contaSalva.getCliente());
-//		Assert.assertEquals(conta.getSaldo(), contaSalva.getSaldo());
-//		Assert.assertEquals(conta.getTipo(), contaSalva.getTipo());
-//		Assert.assertEquals(1, contaSalva.getHistoricos().size());
+		
+		Assert.assertNotNull(contaSalva.getId());
+		Assert.assertEquals(conta.getNumero(), contaSalva.getNumero());
+		Assert.assertEquals(conta.getAgencia(), contaSalva.getAgencia());
+		Assert.assertEquals(conta.getCliente(), contaSalva.getCliente());
+		Assert.assertEquals(conta.getSaldo(), contaSalva.getSaldo());
+		Assert.assertEquals(conta.getTipo(), contaSalva.getTipo());
+		Assert.assertEquals(0, contaSalva.getHistoricos().size());
+	}
+	
+	@Test
+	public void deveSalvarUmaContaEUmHistorico() {
+		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
+		Cliente cliente = clienteRepository.save(new Cliente("Cliente Teste", "00000000000"));
+		Agencia agencia = agenciaRepository.save(new Agencia("1234", "1", cidade));
+		
+		Conta conta = new Conta(agencia, ContaTipo.Corrente, "1234", cliente);
+		conta.depositar(10.0);
+		Conta contaSalva = contaRepository.save(conta);
+		
+		Assert.assertEquals(conta.getNumero(), contaSalva.getNumero());
+		Assert.assertNotNull(contaSalva.getId());
+		Assert.assertEquals(1,contaSalva.getHistoricos().size());
 	}
 
 }
