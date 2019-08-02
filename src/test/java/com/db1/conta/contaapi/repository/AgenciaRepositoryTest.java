@@ -19,10 +19,10 @@ import com.db1.conta.contaapi.domain.entity.Estado;
 public class AgenciaRepositoryTest {
 	
 	@Autowired
-	private AgenciaRepository agenciaRepository;
+	private CidadeRepository cidadeRepository;
 	
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private AgenciaRepository agenciaRepository;
 	
 	@After
 	public void afterTest() {
@@ -33,9 +33,7 @@ public class AgenciaRepositoryTest {
 	@Test
 	public void deveSalvarUmaAgencia() {
 		
-		Cidade cidade = new Cidade("Maringá", Estado.PR);
-		Cidade cidadeSalva = cidadeRepository.save(cidade);
-		Assert.assertNotNull(cidade);
+		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
 		
 		Agencia agencia = new Agencia("1234", "0", cidade);
 		Agencia agenciaSalva = agenciaRepository.save(agencia);
@@ -66,20 +64,18 @@ public class AgenciaRepositoryTest {
 		Assert.assertEquals(cidade.getId(), agenciaPeloNumero.getCidade().getId());	
 	}
 	
-//	@Test
-//	public void deveRetornarCidadesPorEstado() {
-//		
-//		Cidade cidade = new Cidade("Maringá", Estado.PR);
-//		Cidade cidadeSalva = cidadeRepository.save(cidade);
-//		Assert.assertNotNull(cidade);
-//		
-//		Agencia agencia = new Agencia("1234", "0", cidade);
-//		Agencia agenciaSalva = agenciaRepository.save(agencia);
-//		
-//		List<Agencia> agencias = agenciaRepository.findByCidadeEstado(Estado.PR);
-//		
-//		Assert.assertEquals(1,agencias.size());
-//		
-//	}
+	@Test
+	public void deveRetornarCidadesPorEstado() {
+		
+		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
+		
+		Agencia agencia = new Agencia("1234", "0", cidade);
+		agenciaRepository.save(agencia);
+		
+		List<Agencia> agencias = agenciaRepository.findByCidadeEstado(Estado.PR);
+		
+		Assert.assertEquals(1,agencias.size());
+		
+	}
 	
 }
