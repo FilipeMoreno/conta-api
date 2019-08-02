@@ -45,6 +45,30 @@ public class AgenciaTest {
 	}
 	
 	@Test
+	public void deveRetornarAgenciaInvalida() {
+		String mensagem = null;
+		Cidade cidade = new Cidade("Maringá", Estado.PR);
+		try {
+			Agencia agencia = new Agencia("123435", "2", cidade);
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		Assert.assertEquals(Agencia.NUMERO_INVALIDO, mensagem);
+	}
+	
+	@Test
+	public void deveRetornarDigitoInvalido() {
+		String mensagem = null;
+		Cidade cidade = new Cidade("Maringá", Estado.PR);
+		try {
+			Agencia agencia = new Agencia("1234", "215", cidade);
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		Assert.assertEquals(Agencia.DIGITO_INVALIDO, mensagem);
+	}
+	
+	@Test
 	public void deveCriarUmaAgencia() {
 		String mensagem = null;
 		Agencia agencia = null;
