@@ -2,7 +2,6 @@ package com.db1.conta.contaapi.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +18,8 @@ public class Agencia {
 	public static final String DÍGITO_É_OBRIGATÓRIO = "Dígito é obrigatório";
 	public static final String CIDADE_É_OBRIGATÓRIO = "Cidade é obrigatória";
 	public static final String NÚMERO_É_OBRIGATÓRIO = "Número é obrigatório";
+	public static final String NUMERO_INVALIDO = "Número da agência é inválido";
+	public static final String DIGITO_INVALIDO = "Dígito da agência é inválido";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +31,9 @@ public class Agencia {
 	@Column(name = "digito", length = 1, nullable = false)
 	private String digito;
 	
+	@ManyToOne
 	@JoinColumn(name = "cidade_id", nullable = false)
-	@ManyToOne(optional = false)
-	private Cidade Cidade;
+	private Cidade cidade;
 	
 	protected Agencia () {}
 	
@@ -40,13 +41,15 @@ public class Agencia {
 		Assert.hasText(numero, NÚMERO_É_OBRIGATÓRIO);
 		Assert.notNull(cidade, CIDADE_É_OBRIGATÓRIO);
 		Assert.hasText(digito, DÍGITO_É_OBRIGATÓRIO);
+		Assert.isTrue(numero.length() == 4, NUMERO_INVALIDO);
+		Assert.isTrue(digito.length() == 1, DIGITO_INVALIDO);
 		this.numero = numero;
 		this.digito = digito;
-		this.Cidade = cidade;
+		this.cidade = cidade;
 	}
 	
 	public Cidade getCidade() {
-		return Cidade;
+		return cidade;
 	}
 	
 	public String getDigito() {
