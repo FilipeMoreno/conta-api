@@ -74,5 +74,22 @@ public class ContaRepositoryTest {
 		Assert.assertNotNull(contaSalva.getId());
 		Assert.assertEquals(1,contaSalva.getHistoricos().size());
 	}
+	
+	@Test
+	public void deveDepositarESacarUmaQuantia() {
+		Cidade cidade = cidadeRepository.save(new Cidade("Maringá", Estado.PR));
+		Cliente cliente = clienteRepository.save(new Cliente("Cliente Teste", "00000000000"));
+		Agencia agencia = agenciaRepository.save(new Agencia("1234", "1", cidade));
+		
+		Conta conta = new Conta(agencia, ContaTipo.Corrente, "123445", cliente);
+		conta.depositar(100.0);
+		conta.sacar(50.0);
+		Conta contaSalva = contaRepository.save(conta);
+		
+		Assert.assertEquals(conta.getNumero(), contaSalva.getNumero());
+		Assert.assertNotNull(contaSalva.getId());
+		Assert.assertEquals(50, contaSalva.getSaldo(), 0.0);
+		Assert.assertEquals(2,  contaSalva.getHistoricos().size());
+	}
 
 }

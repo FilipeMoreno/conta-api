@@ -33,10 +33,32 @@ public class Cidade {
 	protected Cidade() {}
 	
 	public Cidade(String nome, Estado estado) {
-		Assert.hasText(nome, NOME_É_OBRIGATÓRIO);
-		Assert.notNull(estado, ESTADO_É_OBRIGATÓRIO);
+		this.validadeCidade(nome, estado);
 		this.nome = nome;
 		this.estado = estado;
+	}
+	
+	public void alterar(String nome, Estado estado) {
+		this.validadeCidade(nome, estado);
+		this.nome = nome;
+		this.estado = estado;
+	}
+	
+	public void deletar(String nome, Estado estado) {
+		this.validadeCidade(nome, estado);
+		this.nome = nome;
+		this.estado = estado;
+	}
+	
+	public void buscar(String nome, Estado estado) {
+		this.validadeCidade(nome, estado);
+		this.nome = nome;
+		this.estado = estado;
+	}
+	
+	private void validadeCidade(String nome, Estado estado) {
+		Assert.hasText(nome, NOME_É_OBRIGATÓRIO);
+		Assert.notNull(estado, ESTADO_É_OBRIGATÓRIO);
 	}
 
 	public Long getId() {

@@ -82,7 +82,7 @@ public class Conta {
 	
 	public void sacar(double valor) {	
 		Verificadora.valorMaiorOuIgualQueZero(valor, SAQUE_VALOR_DEVE_SER_MAIOR_QUE_ZERO);
-		this.saldo += valor;
+		this.saldo -= valor;
 		this.historicos.add(new Historico(HistoricoTipo.Saída, valor, this.saldo));
 	}
 	

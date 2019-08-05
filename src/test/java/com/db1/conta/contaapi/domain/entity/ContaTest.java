@@ -75,5 +75,45 @@ public class ContaTest {
 		Assert.assertEquals(cliente, conta.getCliente());
 		Assert.assertEquals(0.0, conta.getSaldo(), 0.0);
 	}
-
+	
+	@Test
+	public void deveRealizarDeposito() {
+		String mensagem = null;
+		Conta conta = null;
+		Cliente cliente = Mockito.mock(Cliente.class);
+		Agencia agencia = Mockito.mock(Agencia.class);
+		try {
+			conta = new Conta(agencia, ContaTipo.Corrente, "1234", cliente);
+			conta.depositar(100);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		Assert.assertNull(mensagem);
+		Assert.assertEquals(agencia, conta.getAgencia());
+		Assert.assertEquals(ContaTipo.Corrente, conta.getTipo());
+		Assert.assertEquals("1234", conta.getNumero());
+		Assert.assertEquals(cliente, conta.getCliente());
+		Assert.assertEquals(100.0, conta.getSaldo(), 0.0);
+	}
+	
+	@Test
+	public void deveRealizarUmSaque() {
+		String mensagem = null;
+		Conta conta = null;
+		Cliente cliente = Mockito.mock(Cliente.class);
+		Agencia agencia = Mockito.mock(Agencia.class);
+		try {
+			conta = new Conta(agencia, ContaTipo.Corrente, "1234", cliente);
+			conta.depositar(100.0);
+			conta.sacar(50.0);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		Assert.assertNull(mensagem);
+		Assert.assertEquals(agencia, conta.getAgencia());
+		Assert.assertEquals(ContaTipo.Corrente, conta.getTipo());
+		Assert.assertEquals("1234", conta.getNumero());
+		Assert.assertEquals(cliente, conta.getCliente());
+		Assert.assertEquals(50.0, conta.getSaldo(), 0.0);
+	}
 }
