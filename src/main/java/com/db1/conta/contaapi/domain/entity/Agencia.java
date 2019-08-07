@@ -38,14 +38,25 @@ public class Agencia {
 	protected Agencia () {}
 	
 	public Agencia(String numero, String digito, Cidade cidade) {
+		this.validarAgencia(numero, digito, cidade);
+		this.numero = numero;
+		this.digito = digito;
+		this.cidade = cidade;
+	}
+	
+	public void alterarAgencia(String numero, String digito, Cidade cidade) {
+		this.validarAgencia(numero, digito, cidade);
+		this.numero = numero;
+		this.digito = digito;
+		this.cidade = cidade;
+	}
+	
+	public void validarAgencia(String numero, String digito, Cidade cidade) {
 		Assert.hasText(numero, NUMERO_OBRIGATORIO);
 		Assert.notNull(cidade, CIDADE_OBRIGATORIA);
 		Assert.hasText(digito, DIGITO_OBRIGATORIO);
 		Assert.isTrue(numero.length() == 4, NUMERO_INVALIDO);
 		Assert.isTrue(digito.length() == 1, DIGITO_INVALIDO);
-		this.numero = numero;
-		this.digito = digito;
-		this.cidade = cidade;
 	}
 	
 	public Cidade getCidade() {
