@@ -42,9 +42,19 @@ public class Cliente {
 	protected Cliente() {}
 	
 	public Cliente(String nome, String cpf) {
+		this.validarCliente(nome, cpf);
+		this.nome = nome;
+		this.cpf = cpf;
+	}
+	
+	public void validarCliente(String nome, String cpf) {
 		Assert.hasText(nome, NOME_É_OBRIGATÓRIO);
 		Assert.hasText(cpf, CPF_É_OBRIGATÓRIO);
 		Assert.isTrue(cpf.length() == 11, CPF_INVÁLIDO);
+	}
+	
+	public void editarCliente(String nome, String cpf) {
+		this.validarCliente(nome, cpf);
 		this.nome = nome;
 		this.cpf = cpf;
 	}
